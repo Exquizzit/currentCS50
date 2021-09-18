@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <center>
+      <h2>{{ item.name }}</h2>
+      <div>
+        <img src="{{ item.image }}" style="width: 40%">
+      </div>
+      <p>{{ item.desc }}</p>
+      <p><b>{{ item.price }}</b></p>
+
+      <form action="/watchlist">
+        <input type="hidden" name="{{ item.name }}">
+        {% if user.is_authenticated %}
+          <input type="submit" value="Add to Watchlist" style="height: 100px">
+        {% endif %}
+      </form>
+    </center>
+{% endblock %}

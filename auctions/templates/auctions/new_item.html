@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if error %}
+        <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <form action="{% url 'new_item' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <h3>New Item</h3>
+            <input type="text" name="name" placeholder="Item Name" style="margin-right: 2%;">
+            <input type="number" name="price" placeholder="Price">
+            $
+        </div>
+
+        <textarea style="margin-top: 2%; width: 40%; height: 200px" placeholder="Item Description" name="description"></textarea>
+
+        <div style="margin-top: 2%;">
+            <h3>Category:</h3>
+            <input id="Collection" type="radio" name="category">
+            <label for="Collection">Collection</label>
+
+            <input id="Electronics" type="radio" name="category">
+            <label for="Electronics">Electronics</label>
+
+            <input id="Toys" type="radio" name="category">
+            <label for="Toys">Toys</label>
+
+            <input id="Other" type="radio" name="category">
+            <label for="Other">Other</label>
+        </div>
+
+        <div>
+            <h3>Image:</h3>
+            <input type="text" name="image" placeholder="Item Image URL">
+        </div>
+
+        <input type="submit" value="Create" style="margin-top: 2%;">
+    </form>
+{% endblock %}
